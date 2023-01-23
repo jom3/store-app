@@ -1,1 +1,27 @@
-<p>navbar works!</p>
+<div class="container">
+  <div class="navbar">
+    <div class="logo__container">
+    <a href="#"><img src="./assets/images/logo.png" alt="logo" class="navbar__logo"></a>
+    <a (click)="mostrarSideNav()" class="navbar__menu"><img src="./assets/images/menu.png" alt=""></a>
+  </div>
+  <ul class="nav__list">
+    <li class="nav__item"><a href="#" class="nav__links">PRODUCTOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">SERVICIOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">DESCUENTOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">CONTACTOS</a></li>
+  </ul>
+  <div class="navbar__user">
+    <p class="user__text nav__text">Usuario</p>
+    <p class="user__role nav__text">Administrador</p>
+  </div>
+</div>
+
+<div class="side__navbar visible">
+  <ul class="sidenav__list">
+    <li class="nav__item"><a href="#" class="nav__links">PRODUCTOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">SERVICIOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">DESCUENTOS</a></li>
+    <li class="nav__item"><a href="#" class="nav__links">CONTACTOS</a></li>
+  </ul>
+</div>
+</div>

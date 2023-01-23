@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  mostrarSideNav(){
+    document.querySelector('.side__navbar')?.classList.toggle('visible')
+  }
 }
