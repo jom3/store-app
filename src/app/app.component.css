@@ -1,0 +1,22 @@
+/* *{
+  outline: 2px solid red;
+} */
+.container{
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid blue;
+  width: 100%;
+  height: 100%;
+}
+.section{
+  width: 100%;
+}
+.section__1{
+  height: auto;
+}
+.section__2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
