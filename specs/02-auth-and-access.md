@@ -1,6 +1,6 @@
 # SPEC 02 — Authentication and access control
 
-> **Status:** Draft
+> **Status:** Implemented
 > **Depends on:** SPEC 01
 > **Date:** 2026-11-24
 > **Objective:** Let users log in, enforce active status and the mandatory first password change, and expose server-side role guards.
