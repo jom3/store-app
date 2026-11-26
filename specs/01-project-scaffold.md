@@ -1,6 +1,6 @@
 # SPEC 01 — Project scaffold
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** None
 > **Date:** 2026-11-24
 > **Objective:** Stand up the monorepo, PostgreSQL migrations, seed data and test harness so every later spec can be built and verified.
@@ -10,7 +10,7 @@
 **In:**
 
 - `backend/`, `frontend/`, `database/` layout.
-- Docker Compose PostgreSQL 16 for development and tests.
+- Existing PostgreSQL 16+ instance with `sistema_ventas` and `sistema_ventas_test` databases.
 - Environment configuration and `.env.example`.
 - Migration runner with `schema_migrations`.
 - Initial schema: `users` and `settings`.
@@ -61,18 +61,18 @@ Forbidden values: no `deleted_at`, no role/permission tables.
 ## Implementation plan
 
 1. Create root `README.md`, `.gitignore`, `.env.example` and empty `backend/`, `frontend/`, `database/migrations/`. Commit.
-2. Add `docker-compose.yml` with `postgres:16` (database `sistema_ventas`, user `postgres`, password from `.env`, port 5432) and a `sistema_ventas_test` database created on first run.
+2. Create the `sistema_ventas` and `sistema_ventas_test` databases on the existing PostgreSQL instance and document the `psql` commands. No project-managed container.
 3. Add `backend/package.json` (type `module`), `backend/src/app.js`, `backend/src/server.js` and `GET /api/health` returning `{ "status": "ok" }`. `npm run dev` uses `node --watch`.
 4. Add `backend/src/db/pool.js` reading `DATABASE_URL`; the server exits with a clear message when the database is unreachable at boot.
 5. Add `backend/src/db/migrate.js`: creates `schema_migrations`, applies `database/migrations/*.sql` in filename order inside a transaction, skips applied versions, and exposes `npm run migrate`.
 6. Add `001_init.sql` and `backend/src/db/seed.js` (`npm run seed`): upsert the admin from `DEFAULT_ADMIN_PASSWORD` with `must_change_password = true`, and upsert `settings` from `BUSINESS_NAME`, `CURRENCY_CODE`, `LOCALE` and `TZ`. Running it twice must not duplicate rows.
 7. Add Jest + Supertest config: `TEST_DATABASE_URL`, an `npm test` global setup that drops the test schema, runs migrations and truncates tables between tests. Include the health test.
 8. Add Angular workspace under `frontend/` (`npm create @angular`, standalone components, SCSS) with a placeholder route and `proxy.conf.json` forwarding `/api` to `http://localhost:3000`. Commit after `npm test` passes.
-9. Fill `README.md`: prerequisites, `docker compose up -d`, migrate, seed, dev servers, test commands and default admin credentials.
+9. Fill `README.md`: prerequisites, database creation, migrate, seed, dev servers, test commands and default admin credentials.
 
 ## Acceptance criteria
 
-- [ ] `docker compose up -d` starts PostgreSQL with both `sistema_ventas` and `sistema_ventas_test`.
+- [ ] `sistema_ventas` and `sistema_ventas_test` exist on the configured PostgreSQL instance.
 - [ ] `npm run migrate` creates `settings`, `users` and `schema_migrations`.
 - [ ] Running `npm run seed` twice leaves exactly one admin and one settings row.
 - [ ] `GET /api/health` returns 200 with `{ "status": "ok" }`.

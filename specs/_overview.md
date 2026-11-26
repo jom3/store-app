@@ -32,7 +32,7 @@
 - **Dates:** stored as `timestamptz`; "same day" and report grouping use `settings.timezone`.
 - **Reports:** ISO weeks, Monday to Sunday.
 - **Printing:** browser print of the receipt view with `@media print`. No thermal printer integration.
-- **Tests:** Jest + Supertest against a real PostgreSQL test database (backend); Karma headless for guards and services (frontend).
+- **Tests:** Jest + Supertest against a real PostgreSQL test database (backend); Vitest with jsdom (frontend, Angular 22 default).
 - **No hard deletes:** users disabled, products inactive, sales cancelled.
 - **Language:** code identifiers and routes in English; UI text and messages in Spanish.
 - **API errors:** `{ "error": { "code": "UPPER_SNAKE", "message": "texto para el usuario" } }`.
