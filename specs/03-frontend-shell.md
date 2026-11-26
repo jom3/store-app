@@ -1,6 +1,6 @@
 # SPEC 03 — Frontend shell and route guards
 
-> **Status:** Draft
+> **Status:** Implemented
 > **Depends on:** SPEC 02
 > **Date:** 2026-11-24
 > **Objective:** Provide the Angular shell with login, session guards, role-based navigation and centralized API error handling.

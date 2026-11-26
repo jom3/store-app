@@ -1,0 +1,20 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">Sistema de ventas</div>
+
+    <nav>
+      @for (item of items(); track item.path) {
+        <a [routerLink]="item.path" routerLinkActive="active">{{ item.label }}</a>
+      }
+    </nav>
+
+    <div class="session">
+      <span class="user">{{ user()?.username }} · {{ roleLabel() }}</span>
+      <button type="button" (click)="logout()">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>
