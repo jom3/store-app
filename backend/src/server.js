@@ -4,6 +4,11 @@ import { pool } from './db/pool.js';
 
 const port = Number(process.env.PORT ?? 3000);
 
+if (!process.env.JWT_SECRET) {
+  console.error('JWT_SECRET is required');
+  process.exit(1);
+}
+
 try {
   await pool.query('SELECT 1');
 } catch (error) {
